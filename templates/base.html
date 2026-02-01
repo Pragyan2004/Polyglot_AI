@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Polyglot AI{% endblock %}</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+
+<body class="bg-[var(--bg-alt)] text-[var(--text-main)] min-h-screen flex flex-col transition-colors duration-300">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-[var(--card-bg)] backdrop-blur-lg border-b border-[var(--border-color)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="/" class="flex items-center space-x-3 group">
+                    <div
+                        class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-black gradient-text tracking-tighter">POLYGLOT.AI</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/"
+                        class="text-[var(--text-main)] opacity-70 hover:opacity-100 font-semibold transition-all">Workspace</a>
+                    <a href="/history"
+                        class="text-[var(--text-main)] opacity-70 hover:opacity-100 font-semibold transition-all">History</a>
+                    <a href="/docs"
+                        class="text-[var(--text-main)] opacity-70 hover:opacity-100 font-semibold transition-all">Docs</a>
+                    <a href="/about"
+                        class="text-[var(--text-main)] opacity-70 hover:opacity-100 font-semibold transition-all">About
+                        Us</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggle"
+                        class="p-3 text-[var(--text-main)] opacity-70 hover:opacity-100 hover:bg-slate-500/10 rounded-xl transition-all">
+                        <svg id="sunIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z">
+                            </path>
+                        </svg>
+                        <svg id="moonIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                    </button>
+                    <a href="/" class="btn-primary px-6 py-2.5 rounded-full font-bold shadow-md hidden sm:block">Start
+                        Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--bg-main)] border-t border-[var(--border-color)] py-16 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight">Polyglot AI</span>
+                    </div>
+                    <p class="text-sm var(--text-muted) leading-relaxed">The next generation of AI-powered code
+                        extraction and translation. Supporting 50+ languages and secure sandboxed execution.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-6 uppercase text-sm tracking-widest opacity-80">Product</h3>
+                    <ul class="space-y-4 text-sm var(--text-muted)">
+                        <li><a href="/" class="hover:text-indigo-500 transition-colors">Workspace</a></li>
+                        <li><a href="/history" class="hover:text-indigo-500 transition-colors">History</a></li>
+                        <li><a href="/docs" class="hover:text-indigo-500 transition-colors">Docs</a></li>
+                        <li><a href="/contact" class="hover:text-indigo-500 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-6 uppercase text-sm tracking-widest opacity-80">Company</h3>
+                    <ul class="space-y-4 text-sm var(--text-muted)">
+                        <li><a href="/about" class="hover:text-indigo-500 transition-colors">About</a></li>
+                        <li><a href="/privacy" class="hover:text-indigo-500 transition-colors">Privacy</a></li>
+                        <li><a href="/terms" class="hover:text-indigo-500 transition-colors">Terms</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-6 uppercase text-sm tracking-widest opacity-80">Newsletter</h3>
+                    <div class="relative">
+                        <input type="email" placeholder="Email"
+                            class="w-full bg-slate-500/10 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-indigo-500 text-sm">
+                        <button
+                            class="absolute right-2 top-1.5 bg-indigo-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-colors">Join</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const html = document.documentElement;
+
+        // Check for saved theme
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.setAttribute('data-theme', 'dark');
+            html.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

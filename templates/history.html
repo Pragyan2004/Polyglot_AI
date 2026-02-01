@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}History | Polyglot AI{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-12">
+        <h1 class="text-4xl font-extrabold text-slate-900 mb-2">Solving History</h1>
+        <p class="text-slate-500">Your past translations and code extractions.</p>
+    </div>
+
+    {% if history %}
+    <div class="grid grid-cols-1 gap-6">
+        {% for item in history %}
+        <div class="glass-card rounded-2xl p-6 hover:shadow-lg transition-shadow border border-slate-200">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest">{{ item.timestamp
+                        }}</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1 line-clamp-1 italic">"{{ item.query or
+                        item.extracted[:50] }}..."</h3>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Completed</span>
+                </div>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-4 mb-4">
+                <p class="text-sm text-slate-600 line-clamp-2">{{ item.extracted or "Text query used." }}</p>
+            </div>
+            <div class="flex justify-end">
+                <button class="text-indigo-600 font-bold text-sm hover:underline flex items-center">
+                    View Details
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-20 bg-white rounded-3xl border-2 border-dashed border-slate-200">
+        <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">No history yet</h2>
+        <p class="text-slate-500 mb-8">Start your first translation to see it archived here.</p>
+        <a href="/" class="btn-primary text-white px-8 py-3 rounded-full font-bold shadow-lg">Get Started</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

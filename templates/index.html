@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Workspace | Polyglot AI{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 mt-12 mb-20">
+    <!-- Hero / Header -->
+    <div class="text-center mb-16 animate-fade-in">
+        <h1 class="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Code Anything, <span
+                class="text-indigo-600">Everywhere.</span></h1>
+        <p class="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">Upload an image of a whiteboard, textbook,
+            or screenshot to generate and execute polyglot solutions instantly.</p>
+    </div>
+
+    <!-- Main Entry Card -->
+    <div class="glass-card rounded-[2.5rem] shadow-2xl overflow-hidden mb-16 animate-fade-in delay-100">
+        <form method="POST" enctype="multipart/form-data" class="p-10 space-y-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Visual Input -->
+                <div class="space-y-4">
+                    <label
+                        class="flex items-center space-x-2 text-xs font-black text-slate-400 uppercase tracking-[0.2em]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
+                            </path>
+                        </svg>
+                        <span>Visual Recognition</span>
+                    </label>
+                    <div class="relative group">
+                        <input type="file" name="image" accept="image/*" id="imageInput" class="hidden">
+                        <label for="imageInput"
+                            class="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-slate-200 rounded-3xl cursor-pointer bg-slate-50/50 hover:bg-white hover:border-indigo-400 hover:shadow-inner transition-all duration-500 group">
+                            <div
+                                class="bg-white p-4 rounded-2xl shadow-sm group-hover:scale-110 transition-transform duration-500 mb-4">
+                                <svg class="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg>
+                            </div>
+                            <span class="text-slate-500 font-bold group-hover:text-indigo-600 transition-colors">Drop or
+                                browse image</span>
+                            <span id="fileName"
+                                class="text-xs text-indigo-500 mt-2 font-black uppercase tracking-widest"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Text Query -->
+                <div class="space-y-4">
+                    <label
+                        class="flex items-center space-x-2 text-xs font-black text-slate-400 uppercase tracking-[0.2em]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h7"></path>
+                        </svg>
+                        <span>Logic Prompt</span>
+                    </label>
+                    <div class="flex flex-col h-full">
+                        <textarea name="query"
+                            class="flex-grow w-full p-6 bg-slate-50/50 border border-slate-200 rounded-3xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all outline-none resize-none placeholder-slate-300 text-slate-800 font-medium"
+                            placeholder="Or describe your problem here..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6">
+                <button type="submit"
+                    class="w-full btn-primary text-white py-6 rounded-[1.5rem] text-xl font-black shadow-xl flex items-center justify-center space-x-4 group">
+                    <span>Synthesize Solutions</span>
+                    <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-500" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Processing Results -->
+    <div class="space-y-16">
+        {% if extracted %}
+        <div class="animate-fade-in">
+            <div class="flex items-center space-x-4 mb-6">
+                <span class="p-3 bg-amber-100 text-amber-600 rounded-2xl shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                </span>
+                <h2 class="text-2xl font-black text-slate-800 tracking-tight">Extracted Logic</h2>
+            </div>
+            <div
+                class="bg-white border border-slate-200 p-8 rounded-[2rem] shadow-sm text-slate-600 leading-relaxed font-medium text-lg italic">
+                "{{ extracted }}"
+            </div>
+        </div>
+        {% endif %}
+
+        {% if solution %}
+        <div class="animate-fade-in delay-100">
+            <div class="flex items-center space-x-4 mb-6">
+                <span class="p-3 bg-indigo-100 text-indigo-600 rounded-2xl shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </span>
+                <h2 class="text-2xl font-black text-slate-800 tracking-tight">Polyglot Solutions</h2>
+            </div>
+            <div id="markdown-solution" class="markdown-body prose prose-slate max-w-none">
+                <div class="hidden" id="raw-solution">{{ solution }}</div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="animate-fade-in delay-200">
+            <div class="flex items-center space-x-4 mb-6">
+                <span class="p-3 bg-emerald-100 text-emerald-600 rounded-2xl shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </span>
+                <h2 class="text-2xl font-black text-slate-800 tracking-tight">Sandbox Terminal</h2>
+            </div>
+            <div
+                class="bg-slate-900 rounded-[2rem] p-10 shadow-2xl border border-slate-800 relative group overflow-hidden">
+                <div class="absolute top-6 left-8 flex space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                </div>
+                <div class="mt-4 text-slate-300 font-mono text-sm leading-relaxed overflow-x-auto whitespace-pre-wrap">
+                    {{ result|safe }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Handle file selection display
+    const imageInput = document.getElementById('imageInput');
+    const fileNameDisplay = document.getElementById('fileName');
+    if (imageInput) {
+        imageInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                fileNameDisplay.textContent = 'Ready: ' + e.target.files[0].name.toUpperCase();
+            }
+        });
+    }
+
+    // Markdown and Highlight initialization
+    document.addEventListener('DOMContentLoaded', () => {
+        const rawEl = document.getElementById('raw-solution');
+        const targetEl = document.getElementById('markdown-solution');
+        if (rawEl && targetEl) {
+            targetEl.innerHTML = marked.parse(rawEl.textContent);
+            hljs.highlightAll();
+        }
+    });
+</script>
+{% endblock %}

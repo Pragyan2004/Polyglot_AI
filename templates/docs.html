@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}API Documentation | Polyglot AI{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 py-20">
+    <div class="mb-16 animate-fade-in">
+        <h1 class="text-5xl font-black mb-4 tracking-tight">API <span class="gradient-text">Documentation</span></h1>
+        <p class="text-xl opacity-60">Integrate Polyglot's OCR and code translation capabilities into your own workflow.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div class="lg:col-span-1">
+            <nav class="sticky top-32 space-y-2">
+                <a href="#introduction"
+                    class="block p-3 font-semibold hover:bg-indigo-500/10 rounded-xl transition-all">Introduction</a>
+                <a href="#authentication"
+                    class="block p-3 font-semibold hover:bg-indigo-500/10 rounded-xl transition-all">Authentication</a>
+                <a href="#endpoints"
+                    class="block p-3 font-semibold hover:bg-indigo-500/10 rounded-xl transition-all">Endpoints</a>
+                <a href="#sdks"
+                    class="block p-3 font-semibold hover:bg-indigo-500/10 rounded-xl transition-all">SDKs</a>
+            </nav>
+        </div>
+
+        <div class="lg:col-span-3 space-y-16">
+            <section id="introduction" class="glass-card p-10 rounded-[2rem]">
+                <h2 class="text-3xl font-bold mb-6">Introduction</h2>
+                <p class="opacity-70 leading-relaxed mb-6">Polyglot AI provides a robust REST API for extracting
+                    technical logic from images and translating that logic into multiple programming schemas instantly.
+                    Our engine is optimized for developer tools, IDE extensions, and educational platforms.</p>
+                <div class="p-4 bg-indigo-500/10 border-l-4 border-indigo-500 rounded-r-xl">
+                    <p class="font-bold text-indigo-500">Public Beta</p>
+                    <p class="text-sm opacity-70">Our API is currently in public beta. Rate limits apply based on
+                        community usage.</p>
+                </div> section
+            </section>
+
+            <section id="authentication" class="glass-card p-10 rounded-[2rem]">
+                <h2 class="text-3xl font-bold mb-6">Authentication</h2>
+                <p class="opacity-70 mb-6">Authenticate requests by including your secret key in the `X-API-Key` header.
+                </p>
+                <div class="bg-black/80 rounded-2xl p-6 font-mono text-sm text-green-400">
+                    <pre><code>curl -H "X-API-Key: pg_key_12345" \
+     https://api.polyglot.ai/v1/extract</code></pre>
+                </div>
+            </section>
+
+            <section id="endpoints" class="space-y-8">
+                <h2 class="text-3xl font-bold">Main Endpoints</h2>
+
+                <div class="glass-card p-8 rounded-[2rem]">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="px-3 py-1 bg-green-500 text-white text-xs font-black rounded-lg">POST</span>
+                        <code class="font-bold">/v1/synthesize</code>
+                    </div>
+                    <p class="opacity-70 text-sm mb-6">Submit an image or raw text to get multi-language code blocks and
+                        sandbox execution logs.</p>
+                    <div class="bg-black/80 rounded-2xl p-6 font-mono text-sm">
+                        <pre class="text-slate-400"><code>{
+  "image_url": "https://img.host/problem.jpg",
+  "target_languages": ["python", "java", "cpp"],
+  "execute": true
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Polyglot AI | Next-Gen Synthesis{% endblock %}
+
+{% block content %}
+<div class="relative overflow-hidden">
+    <!-- Ambient Background Decorations -->
+    <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full"></div>
+    <div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full"></div>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 pt-32 pb-20 text-center relative z-10">
+        <div
+            class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-500 text-sm font-bold mb-8 animate-fade-in">
+            <span class="relative flex h-2 w-2">
+                <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            <span>v2.0 Beta: Polyglot Logic Core Live</span>
+        </div>
+
+        <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-none animate-fade-in delay-100">
+            Synthesize Logic. <br>
+            <span class="gradient-text">Transcend Syntax.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl opacity-60 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in delay-200">
+            The world's first AI engine that converts visual code problems into optimized, executable solutions across
+            50+ languages simultaneously.
+        </p>
+
+        <div
+            class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in delay-300">
+            <a href="/workspace"
+                class="btn-primary w-full sm:w-auto px-10 py-5 rounded-2xl font-black text-xl shadow-2xl flex items-center justify-center space-x-3">
+                <span>Enter Workspace</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
+                    </path>
+                </svg>
+            </a>
+            <a href="/docs"
+                class="w-full sm:w-auto px-10 py-5 rounded-2xl font-bold text-xl border border-[var(--border-color)] hover:bg-slate-500/5 transition-all">
+                Read API Docs
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="max-w-5xl mx-auto px-4 pb-32 animate-fade-in delay-300">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-4xl font-black gradient-text">99.2%</div>
+                <div class="text-xs font-bold uppercase tracking-widest opacity-40">OCR Accuracy</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-black gradient-text">50+</div>
+                <div class="text-xs font-bold uppercase tracking-widest opacity-40">Languages</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-black gradient-text">
+                    < 2s</div>
+                        <div class="text-xs font-bold uppercase tracking-widest opacity-40">Synthesize Speed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-black gradient-text">24/7</div>
+                    <div class="text-xs font-bold uppercase tracking-widest opacity-40">Sandbox Availability</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Section Preview -->
+        <section class="max-w-6xl mx-auto px-4 pb-40">
+            <div class="glass-card rounded-[3rem] p-12 md:p-20 overflow-hidden relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-black mb-6 leading-tight">One Problem. <br> Every Ecosystem.</h2>
+                        <p class="opacity-60 text-lg leading-relaxed mb-8">Stop choosing between ecosystems. Submit your
+                            logic once and get enterprise-grade code in Python, Java, Rust, C++, and more. All executed
+                            and verified in real-time shadows.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z">
+                                    </path>
+                                </svg>
+                                <span class="font-semibold italic">Tesseract High-Speed Parsing</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z">
+                                    </path>
+                                </svg>
+                                <span class="font-semibold italic">Llama 3.3 Versatile Synthesis</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="bg-black/90 p-6 rounded-3xl shadow-2xl font-mono text-sm leading-relaxed border border-white/10 scale-105">
+                            <div class="flex space-x-2 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            </div>
+                            <div class="space-y-2">
+                                <p class="text-purple-400">def <span class="text-indigo-300">binary_search</span>(arr,
+                                    x):</p>
+                                <p class="text-slate-400 ml-4">low, high = 0, len(arr) - 1</p>
+                                <p class="text-slate-400 ml-4">while low <= high:</p>
+                                        <p class="text-slate-400 ml-8 text-emerald-400"># Logic Synthesized by Polyglot
+                                        </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> section
+    </div>
+    {% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy | Polyglot AI{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-20 animate-fade-in">
+    <div class="mb-16">
+        <h1 class="text-5xl font-black mb-4 tracking-tight">Privacy <span class="gradient-text">Policy</span></h1>
+        <p class="text-xl opacity-60 italic">Last updated: February 1, 2026</p>
+    </div>
+
+    <div class="glass-card p-10 md:p-16 rounded-[2.5rem] space-y-12">
+        <section>
+            <h2 class="text-3xl font-bold mb-6">1. Data Sovereignty</h2>
+            <p class="opacity-70 leading-relaxed">
+                At Polyglot AI, we believe your logic belongs to you. We do not store your uploaded images or
+                synthesized code persistently unless you explicitly save them to your history. All OCR processing is
+                ephemeral through our secure Llama-3 parsing engine.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold mb-6">2. Sandbox Security</h2>
+            <p class="opacity-70 leading-relaxed">
+                When you execute code in our workspace, it is run in an isolated E2B Sandbox. These sandboxes are
+                destroyed immediately after execution. Your code never interacts with our internal servers or other
+                users' sessions.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold mb-6">3. Third-Party Integration</h2>
+            <p class="opacity-70 leading-relaxed">
+                We use the following secure partners to provide our services:
+            </p>
+            <ul class="mt-4 space-y-4">
+                <li class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                    <span class="font-semibold">Groq Inc.</span>
+                    <span class="opacity-50">— for fast AI inference</span>
+                </li>
+                <li class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span class="font-semibold">E2B</span>
+                    <span class="opacity-50">— for secure code execution</span>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold mb-6">4. Cookies</h2>
+            <p class="opacity-70 leading-relaxed">
+                We use minimal cookies solely for maintaining your dark mode preferences and session history within your
+                own browser. No tracking or marketing cookies are deployed.
+            </p>
+        </section> section
+    </div>
+</div>
+{% endblock %}

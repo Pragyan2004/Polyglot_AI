@@ -1,0 +1,7 @@
+flask
+pytesseract
+Pillow
+agno
+e2b_code_interpreter
+python-dotenv
+gunicorn
