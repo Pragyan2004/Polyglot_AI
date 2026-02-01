@@ -6,7 +6,8 @@ from agno.models.groq import Groq
 from e2b_code_interpreter import Sandbox
 from dotenv import load_dotenv
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+if os.name == 'nt':
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 load_dotenv()
 

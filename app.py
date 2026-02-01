@@ -9,7 +9,8 @@ from agno.models.groq import Groq
 from e2b_code_interpreter import Sandbox
 from dotenv import load_dotenv
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+if os.name == 'nt':
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 load_dotenv()
 
 app = Flask(__name__)
@@ -41,9 +42,12 @@ def index():
         image = request.files.get("image")
 
         if image and not query:
-            img = Image.open(image.stream)
-            extracted_text = pytesseract.image_to_string(img).strip()
-            extracted = extracted_text if extracted_text else "❌ No text detected in image."
+            try:
+                img = Image.open(image.stream)
+                extracted_text = pytesseract.image_to_string(img).strip()
+                extracted = extracted_text if extracted_text else "❌ No text detected in image."
+            except Exception as e:
+                extracted = f"❌ OCR Error: Tesseract is likely not installed on the server. {str(e)}"
 
             if extracted and extracted != "❌ No text detected in image.":
                 code_prompt = f"""You're an expert Polyglot developer. Provide complete, optimal solutions for the problem below in the following languages: Python, JavaScript, C++, and Java.

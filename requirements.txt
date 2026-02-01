@@ -2,6 +2,7 @@ flask
 pytesseract
 Pillow
 agno
+groq
 e2b_code_interpreter
 python-dotenv
 gunicorn
