@@ -73,7 +73,17 @@ Polyglot AI is a high-performance, developer-first platform that converts visual
 
 ---
 
-## 📂 Project Structure
+## Screenshots
+
+<img width="1424" height="796" alt="Screenshot 2026-02-01 164335" src="https://github.com/user-attachments/assets/8f54c28a-1ae5-438b-a1c5-a616e678a2b5" />
+<img width="1456" height="811" alt="Screenshot 2026-02-01 164322" src="https://github.com/user-attachments/assets/4b2a51dc-4af9-4c36-bbdd-75932f6235a0" />
+<img width="1389" height="583" alt="Screenshot 2026-02-01 164307" src="https://github.com/user-attachments/assets/354c12ca-5cb5-4bf0-aa09-5ddffb6fe7c9" />
+<img width="1287" height="917" alt="Screenshot 2026-02-01 164239" src="https://github.com/user-attachments/assets/3469318d-8e09-4f75-962f-8602c860e440" />
+
+---
+
+## 📂 Project 
+Structure
 
 ```text
 ├── static/
@@ -112,3 +122,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <p align="center">
   Built with ❤️ for the Global Developer Community
 </p>
+
